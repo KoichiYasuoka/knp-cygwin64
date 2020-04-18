@@ -5,24 +5,11 @@ if platform.system().startswith("CYGWIN") and platform.machine()=="x86_64":
 else:
   raise OSError("knp-cygwin64 only for 64-bit Cygwin")
 
-from setuptools.command.install import install
-from setuptools.command.develop import develop
-class postInstall(install):
-  def run(self):
-    install.run(self)
-    import subprocess
-    subprocess.run(["sh","-x","./postinstall.sh"])
-class postDevelop(develop):
-  def run(self):
-    install.run(self)
-    import subprocess
-    subprocess.run(["sh","-x","./postinstall.sh"])
-
 import setuptools
 import glob
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.5.1",
+  version="0.5.2",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
@@ -36,9 +23,8 @@ setuptools.setup(
     ("local/share/knp/dict/gcf",glob.glob("share/knp/dict/gcf/*.db")),
     ("local/share/knp/dict/synonym",glob.glob("share/knp/dict/synonym/*.db")),
     ("local/share/knp/dict/ebcf",glob.glob("share/knp/dict/ebcf/*.d*[bt]")),
-    ("local/share/knp/rule",glob.glob("share/knp/rule/*")),
+    ("local/share/knp/rule",glob.glob("share/knp/rule/*.pl")+glob.glob("share/knp/rule/*.phrase")+glob.glob("share/knp/rule/*.rule")+glob.glob("share/knp/rule/*.data")),
     ("local/share/knp/doc",glob.glob("share/knp/doc/*"))
   ],
-  install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"],
-  cmdclass={"install":postInstall,"develop":postDevelop}
+  install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"]
 )
