@@ -6,17 +6,17 @@ else:
   raise OSError("knp-cygwin64 only for 64-bit Cygwin")
 
 from setuptools.command.install import install
-class touchInstall(install):
+class postInstall(install):
   def run(self):
     install.run(self)
     import subprocess
-    subprocess.run(["touch","-r","/usr/local/knp/dict/crf.model","/usr/local/knp/rule/*"])
+    subprocess.run(["sh","-x","./postinstall.sh"])
 
 import setuptools
 import glob
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.4.2",
+  version="0.5.0",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
@@ -34,5 +34,5 @@ setuptools.setup(
     ("local/share/knp/doc",glob.glob("share/knp/doc/*"))
   ],
   install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"],
-  cmdclass={"install":touchInstall}
+  cmdclass={"install":postInstall}
 )
