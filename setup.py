@@ -1,4 +1,5 @@
 import setuptools
+from setuptools.command import install
 import glob
 import platform
 if platform.system().startswith("CYGWIN") and platform.machine()=="x86_64":
@@ -7,7 +8,7 @@ if platform.system().startswith("CYGWIN") and platform.machine()=="x86_64":
 else:
   raise OSError("knp-cygwin64 only for 64-bit Cygwin")
 
-class PostInstall(setuptools.command.install.install):
+class PostInstall(install.install):
   def run(self):
     install.run(self)
     import subprocess
@@ -15,7 +16,7 @@ class PostInstall(setuptools.command.install.install):
 
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.4.0",
+  version="0.4.1",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
