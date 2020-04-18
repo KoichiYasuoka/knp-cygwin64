@@ -1,0 +1,44 @@
+(JUMAN文法ディレクトリ
+	/usr/local/share/juman/dic
+)
+
+(KNPルールディレクトリ
+	/usr/local/share/knp/rule
+)
+
+(KNPルールファイル
+	(mrph_homo 同形異義語)
+	(mrph_filter 形態素-前処理 ルールループ先行)
+	(mrph_auto_dic 形態素 ルールループ先行)
+	(mrph_basic 形態素 ルールループ先行)
+	(mrph_ne 固有表現形態素 ルールループ先行)
+	(bnst_basic 文節 逆方向 ルールループ先行)
+	(bnst_type 文節 逆方向 BREAK)
+	(bnst_etc 文節 逆方向 ルールループ先行)
+	(modality 文節 逆方向 ルールループ先行)
+	(kakari_uke 係り受け)
+	(koou 呼応)
+	(bnst_basic 基本句 逆方向 ルールループ先行)
+	(modality 基本句 逆方向 ルールループ先行)
+	(clause_function 基本句 逆方向 ルールループ先行)
+	(tag_etc 基本句 逆方向 ルールループ先行)
+	(case_analysis 基本句 逆方向)
+	(tag_after_dpnd_and_case 基本句-構造決定後 逆方向 ルールループ先行)
+	(tag_postprocess 基本句-後処理 逆方向)
+)
+
+(KNP辞書ディレクトリ
+        /usr/local/share/knp/dict
+)
+
+(同義表現ファイル
+	/usr/local/share/knp/dict/synonym/synonym.db
+)
+
+(NEモデルファイル
+	/usr/local/share/knp/dict/crf.model
+)
+
+(分布類似度MIDBファイル
+	/usr/local/share/knp/dict/distsim/mi.db
+)
