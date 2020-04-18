@@ -13,4 +13,5 @@ find share -name '*.xz' -print |
   do unxz $Z
   done
 )
+rm -f /usr/local/bin/knp
 exit 0
