@@ -6,7 +6,13 @@ else:
   raise OSError("knp-cygwin64 only for 64-bit Cygwin")
 
 from setuptools.command.install import install
+from setuptools.command.develop import develop
 class postInstall(install):
+  def run(self):
+    install.run(self)
+    import subprocess
+    subprocess.run(["sh","-x","./postinstall.sh"])
+class postDevelop(develop):
   def run(self):
     install.run(self)
     import subprocess
@@ -16,7 +22,7 @@ import setuptools
 import glob
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.5.0",
+  version="0.5.1",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
@@ -34,5 +40,5 @@ setuptools.setup(
     ("local/share/knp/doc",glob.glob("share/knp/doc/*"))
   ],
   install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"],
-  cmdclass={"install":postInstall}
+  cmdclass={"install":postInstall,"develop":postDevelop}
 )
