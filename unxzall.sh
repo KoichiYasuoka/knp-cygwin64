@@ -13,9 +13,4 @@ find share -name '*.xz' -print |
   do unxz $Z
   done
 )
-find share -name '*.data' -print |
-( while read D
-  do touch $D
-  done
-)
 exit 0
