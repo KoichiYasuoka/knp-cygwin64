@@ -7,9 +7,15 @@ if platform.system().startswith("CYGWIN") and platform.machine()=="x86_64":
 else:
   raise OSError("knp-cygwin64 only for 64-bit Cygwin")
 
+class PostInstall(setuptools.command.install.install):
+  def run(self):
+    install.run(self)
+    import subprocess
+    subprocess.run(["touch","-r","/usr/local/knp/dict/crf.model","/usr/local/knp/rule/*"])
+
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.3.0",
+  version="0.4.0",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
@@ -26,5 +32,6 @@ setuptools.setup(
     ("local/share/knp/rule",glob.glob("share/knp/rule/*")),
     ("local/share/knp/doc",glob.glob("share/knp/doc/*"))
   ],
-  install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"]
+  install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"],
+  cmdclass={"install":PostInstall}
 )
