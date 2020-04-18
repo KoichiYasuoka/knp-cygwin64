@@ -13,5 +13,4 @@ find share -name '*.xz' -print |
   do unxz $Z
   done
 )
-touch share/knp/rule/*
 exit 0

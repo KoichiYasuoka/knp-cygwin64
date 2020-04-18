@@ -23,7 +23,7 @@ setuptools.setup(
     ("local/share/knp/dict/gcf",glob.glob("share/knp/dict/gcf/*.db")),
     ("local/share/knp/dict/synonym",glob.glob("share/knp/dict/synonym/*.db")),
     ("local/share/knp/dict/ebcf",glob.glob("share/knp/dict/ebcf/*.d*[bt]")),
-    ("local/share/knp/rule",glob.glob("share/knp/rule/*")),
+    ("local/share/knp/rule",glob.glob("share/knp/rule/*.data")),
     ("local/share/knp/doc",glob.glob("share/knp/doc/*"))
   ],
   install_requires=["juman-cygwin64@git+https://github.com/KoichiYasuoka/juman-cygwin64"]
