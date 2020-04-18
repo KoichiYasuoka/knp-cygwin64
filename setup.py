@@ -9,7 +9,7 @@ import setuptools
 import glob
 setuptools.setup(
   name="knp-cygwin64",
-  version="0.6.0",
+  version="0.6.1",
   packages=setuptools.find_packages(),
   data_files=[
     ("local/bin",glob.glob("bin/*")),
